@@ -1,0 +1,25 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import style from './Navigation.module.css';
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: #deb887;
+  font-size: 18px;
+  font-weight: 600;
+
+  &.active {
+    color: #efdcc3;
+  }
+`;
+function Navigation() {
+  return (
+    <nav className={style.nav}>
+      <StyledNavLink to="/">Home</StyledNavLink>
+      <StyledNavLink to="/contacts">Contacts</StyledNavLink>
+    </nav>
+  );
+}
+
+export default Navigation;

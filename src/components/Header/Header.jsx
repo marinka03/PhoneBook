@@ -1,29 +1,22 @@
+import AuthNav from 'components/AuthNav';
 import Filter from 'components/Filter';
+import Navigation from 'components/Navigation';
+import UserMenu from 'components/UserMenu';
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { styled } from 'styled-components';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { selectIsLoggedIn } from '../../redux/auth/auth-selectors';
 import style from './Header.module.css';
-
-const StyledNavLink = styled(NavLink)`
-  text-decoration: none;
-  color: #000;
-  font-size: 18px;
-  font-weight: 600;
-
-  &.active {
-    color: #FA7092;
-  }
-`;
 
 function Header() {
   const { pathname } = useLocation();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
     <header className={style.header}>
       <div className={style.wrapper}>
-        <nav className={style.nav}>
-          <StyledNavLink to="/">Home</StyledNavLink>
-          <StyledNavLink to="/contacts">Contacts</StyledNavLink>
-        </nav>
+        <Navigation />
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
         {pathname === '/contacts' && <Filter />}
       </div>
     </header>

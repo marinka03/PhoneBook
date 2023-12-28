@@ -7,8 +7,10 @@ export const selectorItems = state => state.contacts.items;
 export const selectorContactsFilter = createSelector(
   [selectorItems, selectorFilter],
   (items, filterItems) => {
-    return items.filter((contact = {}) =>
-      contact.name?.toLowerCase().includes(filterItems.toLowerCase())
-    );
+    return items.length > 0
+      ? items.filter((contact = {}) =>
+          contact.name?.toLowerCase().includes(filterItems.toLowerCase())
+        )
+      : [];
   }
 );
