@@ -1,4 +1,3 @@
-import ContactForm from 'components/ContactForm';
 import React from 'react';
 import style from './HomePage.module.css';
 
@@ -10,7 +9,7 @@ function HomePage() {
         This is your phone book. Quickly add new contacts...
       </p>
       <div className={style['img-wrapper']}></div>
-      <ContactForm />
+
     </div>
   );
 }

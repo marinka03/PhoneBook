@@ -16,8 +16,9 @@ function Header() {
     <header className={style.header}>
       <div className={style.wrapper}>
         <Navigation />
-        {isLoggedIn ? <UserMenu /> : <AuthNav />}
         {pathname === '/contacts' && <Filter />}
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+
       </div>
     </header>
   );

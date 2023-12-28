@@ -1,3 +1,4 @@
+import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import React from 'react';
 import style from './ContactPage.module.css';
@@ -5,6 +6,7 @@ import style from './ContactPage.module.css';
 function ContactsPage() {
   return (
     <div className={style.wrapper}>
+      <ContactForm />
       <h2>Contacts:</h2>
       <ContactList />
     </div>
