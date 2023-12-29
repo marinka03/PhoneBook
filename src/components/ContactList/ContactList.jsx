@@ -4,28 +4,19 @@ import {
   selectorContacts,
   selectorContactsFilter,
 } from '../../redux/selectors';
-import { currentUser, getAllContacts } from '../../redux/operations';
+import { getAllContacts } from '../../redux/operations';
 import style from '../ContactList/ContactList.module.css';
 import ContactItem from 'components/ContactItem/ContactItem';
-import {
-  selectAuthObj,
-  selectIsLoggedIn,
-} from '../../redux/auth/auth-selectors';
 
 function ContactList() {
   const dispatch = useDispatch();
   const { isLoading, error } = useSelector(selectorContacts);
 
   const contactsFtr = useSelector(selectorContactsFilter);
-  const userObj = useSelector(selectAuthObj);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    dispatch(currentUser(userObj));
-    if (isLoggedIn) {
-      dispatch(getAllContacts(userObj));
-    }
-  }, [dispatch, isLoggedIn, userObj]);
+    dispatch(getAllContacts());
+  }, [dispatch]);
 
   return (
     <div>

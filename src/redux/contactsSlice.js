@@ -1,17 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
-import {
-  addContact,
-  deleteContact,
-  currentUser,
-  getAllContacts,
-} from './operations';
-// const initialState = [
-// { id: '1sflji', name: 'Rosie Simpson', number: '459-12-56' },
-// { id: '2sflji', name: 'Hermione Kline', number: '443-89-12' },
-// { id: '3sflji', name: 'Eden Clements', number: '645-17-79' },
-// { id: '4sflji', name: 'Annie Copeland', number: '227-91-26' },
-// ];
+import { addContact, deleteContact, getAllContacts } from './operations';
+
 const initialState = {
   items: [],
   isLoading: false,
@@ -30,14 +20,6 @@ const contactsSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(currentUser.pending, handlePending)
-      .addCase(currentUser.fulfilled, (state, { payload = [] }) => {
-        state.isLoading = false;
-        state.error = null;
-        state.items = payload;
-      })
-      .addCase(currentUser.rejected, handleRejected)
-
       .addCase(getAllContacts.pending, handlePending)
       .addCase(getAllContacts.fulfilled, (state, { payload = [] }) => {
         state.isLoading = false;

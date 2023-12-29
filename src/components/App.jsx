@@ -6,9 +6,17 @@ import AppLayout from './AppLayout/AppLayout';
 import GlobalStyles from './GlobalStyles';
 import RegistrationPage from 'pages/RegistrationPage';
 import LogInPage from 'pages/LogInPage';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { currentUser } from '../redux/auth/auth-operations';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(currentUser());
+  }, [dispatch]);
+
   return (
     <>
       <Routes>
@@ -44,6 +52,11 @@ const App = () => {
           error: {
             style: {
               background: '#f3d6d9',
+            },
+          },
+          custom: {
+            style: {
+              background: '#c6e0ec',
             },
           },
         }}
