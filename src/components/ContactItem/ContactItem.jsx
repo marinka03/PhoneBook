@@ -7,7 +7,9 @@ function ContactItem({ name, number, id }) {
   const dispatch = useDispatch();
   return (
     <>
-      <span>{name + ': '}</span>
+      <span>
+        <b>{name + ': '}</b>
+      </span>
       {number}
       <button
         className={style.delete__btn}

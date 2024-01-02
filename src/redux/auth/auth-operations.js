@@ -30,7 +30,6 @@ export const createNewUser = createAsyncThunk(
       const { data } = await axios.post('/users/signup', user);
       token.set(data.token);
       return data;
-
     } catch (error) {
       return thunkAPI.rejectWithValue('Oops');
     }
@@ -45,7 +44,6 @@ export const signIn = createAsyncThunk(
       token.set(data.token);
       toast.success(`Welcome ${data.user.name}!`);
       return data;
-
     } catch (error) {
       return thunkAPI.rejectWithValue('Oops');
     }
@@ -58,28 +56,26 @@ export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
     token.unset();
     toast.success('Bye.');
     return data;
-
   } catch (error) {
     return thunkAPI.rejectWithValue('Oops');
   }
 });
 
 export const currentUser = createAsyncThunk(
-  'auth/currentUser',
+  'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistToken = state.auth.token;
 
     if (!persistToken) {
-      return;
+      return thunkAPI.rejectWithValue();
     }
     token.set(persistToken);
     try {
-      const {data} = await axios.get('/users/current');
+      const { data } = await axios.get('/users/current');
       return data;
-
     } catch (e) {
-     return toast.custom(<StyledCustom>You are not authorized.</StyledCustom>);
+      return toast.custom(<StyledCustom>You are not authorized.</StyledCustom>);
     }
   }
 );

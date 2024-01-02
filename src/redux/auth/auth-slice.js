@@ -6,31 +6,19 @@ const initialState = {
   token: null,
   error: null,
   isLoggedIn: false,
+  isRefresh: false,
 };
-// const handlePending = state => {
-//     state.isLoading = true;
-//   };
-//   const handleRejected = (state, action) => {
-//     state.isLoading = false;
-//     state.error = action.payload;
-//   };
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: builder => {
     builder
-    .addCase(currentUser.fulfilled, (state, action)=>{
-      state.user = action.payload;
-      state.isLoggedIn = true;
-    })
-
-    
       .addCase(createNewUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-
       .addCase(signIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
@@ -40,8 +28,19 @@ const authSlice = createSlice({
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+      })
+      .addCase(currentUser.pending, state => {
+        state.isRefresh = true;
+      })
+      .addCase(currentUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isLoggedIn = true;
+        state.isRefresh = false;
+      })
+      .addCase(currentUser.rejected, (state, action) => {
+        state.isRefresh = false;
+        state.error = action.payload;
       });
-
   },
 });
 

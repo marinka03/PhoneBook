@@ -1,42 +1,56 @@
 import { Toaster } from 'react-hot-toast';
-import ContactsPage from 'pages/ContactPage';
-import HomePage from 'pages/HomePage';
+import { lazy, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentUser } from '../redux/auth/auth-operations';
 import { Route, Routes } from 'react-router-dom';
 import AppLayout from './AppLayout/AppLayout';
 import GlobalStyles from './GlobalStyles';
-import RegistrationPage from 'pages/RegistrationPage';
-import LogInPage from 'pages/LogInPage';
-import { Suspense, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { currentUser } from '../redux/auth/auth-operations';
+import PriviteRoute from '../Routes/PriviteRoute';
+import PublicRoute from '../Routes/PublicRoute';
+import { selectRefresh } from '../redux/auth/auth-selectors';
+
+const HomePage = lazy(() => import('pages/HomePage'));
+const ContactsPage = lazy(() => import('pages/ContactPage'));
+const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
+const LogInPage = lazy(() => import('pages/LogInPage'));
 
 const App = () => {
   const dispatch = useDispatch();
+  const isRefresh = useSelector(selectRefresh);
 
   useEffect(() => {
     dispatch(currentUser());
   }, [dispatch]);
 
-  return (
+  return !isRefresh && (
     <>
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
+          <Route
+            path="/contacts"
+            element={
+              <PriviteRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          />
           <Route
             path="/register"
             element={
-              <Suspense>
-                <RegistrationPage />
-              </Suspense>
+              <PublicRoute
+                redirectTo="/contacts"
+                component={<RegistrationPage />}
+                restricted
+              />
             }
           />
           <Route
             path="/login"
             element={
-              <Suspense>
-                <LogInPage />
-              </Suspense>
+              <PublicRoute
+                redirectTo="/contacts"
+                component={<LogInPage />}
+                restricted
+              />
             }
           />
         </Route>
@@ -66,3 +80,23 @@ const App = () => {
 };
 
 export default App;
+// {/* <Route path="/" element={<AppLayout />}>
+//           <Route index element={<HomePage />} />
+//           <Route path="/contacts" element={<ContactsPage />} />
+//           <Route
+//             path="/register"
+//             element={
+//               // <Suspense fallback={<p>Loading...</p>}>
+//                 <RegistrationPage />
+//               // </Suspense>
+//             }
+//           />
+//           <Route
+//             path="/login"
+//             element={
+//               // <Suspense fallback={<p>Loading...</p>}>
+//                 <LogInPage />
+//               // </Suspense>
+//             }
+//           />
+//         </Route> */}

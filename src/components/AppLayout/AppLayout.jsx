@@ -1,5 +1,5 @@
 import Header from 'components/Header/Header';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import style from './AppLayout.module.css';
 
@@ -16,7 +16,9 @@ function AppLayout() {
           ))}
         </ul>
       </div>
-      <Outlet />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

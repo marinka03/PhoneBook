@@ -7,7 +7,7 @@ function ContactsPage() {
   return (
     <div className={style.wrapper}>
       <ContactForm />
-      <h2>Contacts:</h2>
+      <h2 className={style.title}>Contacts:</h2>
       <ContactList />
     </div>
   );
