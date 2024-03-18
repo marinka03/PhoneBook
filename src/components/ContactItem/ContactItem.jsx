@@ -7,7 +7,8 @@ function ContactItem({ name, number, id }) {
   const dispatch = useDispatch();
   return (
     <>
-      <span>
+    <div className={style['item-wrap']}>
+    <span>
         <b>{name + ': '}</b>
       </span>
       {number}
@@ -18,6 +19,8 @@ function ContactItem({ name, number, id }) {
       >
         Delete
       </button>
+    </div>
+     
     </>
   );
 }

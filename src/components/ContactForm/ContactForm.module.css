@@ -7,8 +7,7 @@
   padding: 15px;
   width: 450px;
   height: 100%;
-  background-color: #eedeff;
-  border: 1px solid gray;
+  border: 4px solid #FF8667;
   border-radius: 25px;
 }
 .name__label {
@@ -33,13 +32,14 @@
   width: 110px;
   height: 30px;
   font-size: 16px;
-
-  background-color: #e1fcbb;
-  border: 2px solid darkseagreen;
+  font-weight: 600;
+  background-color: #524439;
+  border: none;
+  color: #FF8667;
   border-radius: 8px;
   cursor: pointer;
 }
 .add__contact__btn:hover,
 .add__contact__btn:focus {
-  background-color: #bff0cc;
+  background-color: #3E250B;
 }

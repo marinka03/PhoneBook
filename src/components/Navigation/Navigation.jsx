@@ -4,15 +4,16 @@ import { NavLink } from 'react-router-dom';
 import { selectIsLoggedIn } from '../../redux/auth/auth-selectors';
 import styled from 'styled-components';
 import style from './Navigation.module.css';
+import { theme } from 'vars';
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-  color: #deb887;
+  color: ${theme.color.light};
   font-size: 18px;
   font-weight: 600;
 
   &.active {
-    color: #efdcc3;
+    color: ${theme.color.orange};
   }
 `;
 function Navigation() {

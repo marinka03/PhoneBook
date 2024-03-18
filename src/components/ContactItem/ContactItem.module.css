@@ -1,15 +1,20 @@
+.item-wrap {
+  color: #524439;
+}
 .delete__btn {
   width: 80px;
   height: 30px;
-  font-size: 16px;
   margin-left: 15px;
-
-  background-color: #edffde;
-  border: 2px solid darkseagreen;
-  border-radius: 4px;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
+  padding: 0;
+  color: #f9d1b2;
+  background-color: #e03206;
 }
 .delete__btn:hover,
 .delete__btn:focus {
-  background-color: #c8ebae;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
