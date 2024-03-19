@@ -4,7 +4,8 @@
 ## Review
 PhoneBook is a web application designed to search, create and delete contacts from the phone book.
 ## Main components
-### Header: visible on all pages, contains the "Contacts" page for authorized users and the logout function.
+### Header
+Header: visible on all pages, contains the "Contacts" page for authorized users and the logout function.
 
 ## User flow
 Unauthorized users: have access to the Home, registration and login pages. Authorized users: can access the "Contacts" page.
